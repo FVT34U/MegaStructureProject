@@ -1,0 +1,81 @@
+[gd_scene load_steps=12 format=3 uid="uid://hjftub5m41so"]
+
+[ext_resource type="PackedScene" uid="uid://c4mchrcvq1u2c" path="res://Player/Player.tscn" id="1_h534b"]
+[ext_resource type="Texture2D" uid="uid://cifc6l46lx7cd" path="res://Assets/Prototyping/Textures/Prototype_Grid_Gray_11-512x512.png" id="2_0c7og"]
+[ext_resource type="PackedScene" uid="uid://b5qlwafy6wu6c" path="res://Assets/Prototyping/GridCube/GridCube.gltf" id="3_ofg8h"]
+[ext_resource type="PackedScene" uid="uid://dh55702msm5ku" path="res://Assets/Panels/Bridge/Bridge_1.tscn" id="4_0c7og"]
+[ext_resource type="PackedScene" uid="uid://cfuahauh3aueq" path="res://Assets/Rooms/Room_1.tscn" id="5_ofg8h"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_opaxt"]
+sky_horizon_color = Color(0.63705695, 0.6769016, 0.70646393, 1)
+ground_bottom_color = Color(0.09999845, 0.190377, 0.21262658, 1)
+ground_horizon_color = Color(0.63705695, 0.6769016, 0.70646393, 1)
+
+[sub_resource type="Sky" id="Sky_t8dlp"]
+sky_material = SubResource("ProceduralSkyMaterial_opaxt")
+
+[sub_resource type="Environment" id="Environment_xp4ti"]
+background_mode = 2
+sky = SubResource("Sky_t8dlp")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u445i"]
+size = Vector3(200, 0.1, 200)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mdx5v"]
+albedo_texture = ExtResource("2_0c7og")
+albedo_texture_force_srgb = true
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3qubi"]
+material = SubResource("StandardMaterial3D_mdx5v")
+size = Vector2(200, 200)
+subdivide_width = 200
+subdivide_depth = 200
+
+[node name="World" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.6347305, 0.68789726, -0.35201487, 0, 0.45554495, 0.8902128, 0.77273357, 0.56504524, -0.28914827, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xp4ti")
+
+[node name="Player" parent="." instance=ExtResource("1_h534b")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1, -2)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.055, 0)
+shape = SubResource("BoxShape3D_u445i")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_3qubi")
+skeleton = NodePath("../..")
+
+[node name="GridCube" parent="." instance=ExtResource("3_ofg8h")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.5, 0)
+
+[node name="GridCube2" parent="." instance=ExtResource("3_ofg8h")]
+transform = Transform3D(0.43301266, 0.5, -0.75, -0.24999999, 0.8660254, 0.4330127, 0.8660254, 0, 0.49999997, -2, 1.5, 0)
+
+[node name="GridCube3" parent="." instance=ExtResource("3_ofg8h")]
+transform = Transform3D(0.43301266, 0.5, -0.75, -0.24999999, 0.8660254, 0.4330127, 0.8660254, 0, 0.49999997, 2, 1.5, 0)
+
+[node name="GridCube4" parent="." instance=ExtResource("3_ofg8h")]
+transform = Transform3D(0.67049515, 0.739199, 0.06341322, -0.67578566, 0.5732233, 0.46338832, 0.30618623, -0.35355335, 0.88388354, 0, 1.5, 3)
+
+[node name="Bridge_5x12" parent="." instance=ExtResource("4_0c7og")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, 0.1, -6.5)
+
+[node name="Bridge_5x14" parent="." instance=ExtResource("4_0c7og")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, 0.1, -7.5)
+
+[node name="Bridge_5x13" parent="." instance=ExtResource("4_0c7og")]
+transform = Transform3D(1, 0, 0, 0, 0.9961947, 0.08715574, 0, -0.08715574, 0.9961947, 2.5, 0.1, -4)
+
+[node name="Room_5x5x3" parent="." instance=ExtResource("5_ofg8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.1, -7)

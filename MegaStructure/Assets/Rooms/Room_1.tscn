@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfuahauh3aueq"]
+
+[ext_resource type="PackedScene" uid="uid://ffh72ws2p4fm" path="res://Assets/Rooms/Room_5x5x3.gltf" id="1_gqpc3"]
+[ext_resource type="Texture2D" uid="uid://dpcap7554dvd1" path="res://Assets/Prototyping/Textures/Prototype_Grid_Gray_04-512x512.png" id="2_ey5ix"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80g5v"]
+albedo_texture = ExtResource("2_ey5ix")
+uv1_triplanar = true
+
+[node name="Room_5x5x3" instance=ExtResource("1_gqpc3")]
+metadata/Size = Vector3(5.2, 3.4, 5)
+
+[node name="Floor" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_80g5v")
+
+[node name="RightWall" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_80g5v")
+
+[node name="BackWall" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_80g5v")
+
+[node name="LeftWall" parent="." index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_80g5v")
+
+[node name="FrontWallWithDoorway" parent="." index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_80g5v")
+
+[node name="Ceiling" parent="." index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_80g5v")
+
+[node name="Connector" type="Node3D" parent="." index="12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9, 0, 0)

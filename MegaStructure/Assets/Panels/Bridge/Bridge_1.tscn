@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh55702msm5ku"]
+
+[ext_resource type="PackedScene" uid="uid://e1ngd8dtnayf" path="res://Assets/Panels/Bridge/Bridge_5x1.gltf" id="1_7gaj0"]
+[ext_resource type="Texture2D" uid="uid://dpcap7554dvd1" path="res://Assets/Prototyping/Textures/Prototype_Grid_Gray_04-512x512.png" id="2_vytbb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrtis"]
+albedo_texture = ExtResource("2_vytbb")
+uv1_triplanar = true
+
+[node name="Bridge_5x12" instance=ExtResource("1_7gaj0")]
+metadata/Size = Vector3(5, 0.2, 1)
+
+[node name="Bridge_5x1" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_xrtis")
+
+[node name="Connector" type="Node3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+
+[node name="Connector2" type="Node3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+
+[node name="Connector3" type="Node3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+
+[node name="Connector4" type="Node3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
